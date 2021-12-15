@@ -1,4 +1,36 @@
 // Storage Controller
+const StorageCtrl = (function (){
+    // public methods
+    return {
+        storeItem: function (item){
+            let items;
+            // check if any items in ls
+            if(localStorage.getItem('items') === null){
+                items = [];
+                // push new item
+                items.push(item);
+                // set ls
+                localStorage.setItem('item', JSON.stringify(items));
+            } else {
+                //get what is already in ls
+                item = JSON.parse(localStorage.getItem('items'));
+                // push new item
+                items.push(item);
+                // reset ls
+                localStorage.setItem('items', JSON.stringify(items));
+            }
+        },
+        getItemsFromStorage: function (){
+            let items;
+            if (localStorage.getItem('items') === null){
+                items = [];
+            } else {
+                items = JSON.parse(localStorage.getItem('items'));
+            }
+            return items;
+        }
+    }
+})();
 // Create later
 
 // Item Controller
@@ -122,7 +154,7 @@ const UICtrl = (function () {
 })();
 
 // App controller
-const App = (function(ItemCtrl,UICtrl){
+const App = (function(ItemCtrl,StorageCtrl,UICtrl){
     // Load event listener
     const loadEventListeners = function(){
         // get UI selectors
@@ -130,6 +162,8 @@ const App = (function(ItemCtrl,UICtrl){
         // add item event
         document.querySelector(UISelectors.addBtn).
         addEventListener('click', itemAddSubmit);
+        // ad document reload event
+        document.addEventListener('DOMContentLoaded', getItemsFromStorage)
     }
     // item add submit function
     const itemAddSubmit = function (event){
@@ -144,10 +178,19 @@ const App = (function(ItemCtrl,UICtrl){
             const totalCalories = ItemCtrl.getTotalCalories();
             // add total calories to UI
             UICtrl.showTotalCalories(totalCalories);
+            // storage in localStorage
+            StorageCtrl.storeItem(newItem);
             // clear fields
             UICtrl.clearInput();
         }
         event.preventDefault()
+    }
+    // get items from storage
+    const getItemsFromStorage = function (){
+        //get items from storage
+        const items = StorageCtrl.getItemsFromStorage()
+        // populate items list
+        UICtrl.populateItemList(items)
     }
     return {
      init: function (){
@@ -160,7 +203,7 @@ const App = (function(ItemCtrl,UICtrl){
          loadEventListeners();
      }
     }
-})(ItemCtrl, UICtrl);
+})(ItemCtrl, StorageCtrl, UICtrl);
 
 // Initialize App.
 App.init()
