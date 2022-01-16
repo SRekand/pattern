@@ -2,41 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>Pattern project</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://kit.fontawesome.com/277d889efd.js" crossorigin="anonymous"></script>
-    <title>calorie project</title>
 </head>
 <body>
-    <!-- navbar -->
-    <nav>
-        <div class="nav-wrapper blue">
-            <div class="container">
-                <a href="#" class="brand-logo center">Track calories</a>
-            </div>
+<nav>
+    <div class="nav-wrapper blue">
+        <div class="container">
+            <a href="#" class="brand-logo center">Track calories</a>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <br>
+<br>
 
-    <div class="container">
-        <div class="card">
-            <div class="card-content">
-                <span class="card-title">Add Meal / Food Item</span>
-                <form class="col">
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <input type="text" placeholder="Add Item" id="item-name">
-                            <label for="item-name">Meal</label>
-                        </div>
-                        <div class="input-field col s6">
-                            <input type="text" placeholder="Add Calories" id="item-calories">
-                            <label for="item-calories">Calories</label>
-                        </div>
-                        <button class="add-btn btn blue darken-3"><i class="fa fa-plus"></i> Add Meal</button>
+<div class="container">
+    <!-- Tracker content -->
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">Add Meal / Food Item</span>
+            <form class="col">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input type="text" placeholder="Add Item" id="item-name">
+                        <label for="item-name">Meal</label>
                     </div>
-                </form>
-            </div>
+                    <div class="input-field col s6">
+                        <input type="text" placeholder="Add Calories" id="item-calories">
+                        <label for="item-calories">Calories</label>
+                    </div>
+                    <button class="add-btn btn blue darken-3"><i class="fa fa-plus"></i>Add Meal</button>
+                </div>
+            </form>
         </div>
+    </div>
 
 
     <!-- Calorie Count -->
@@ -45,10 +45,9 @@
     <!-- Item List -->
     <ul id="item-list" class="collection"></ul>
 
-    </div>
+</div>
 
-    <!-- Complied and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="app.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
